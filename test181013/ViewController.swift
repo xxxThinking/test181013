@@ -10,6 +10,12 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var HX: UITextField!
+    @IBOutlet weak var HY: UITextField!
+    @IBOutlet weak var HK: UITextField!
+    @IBAction func HZ(_ sender: Any) {
+        HK.text = "\(Int(HX.text!)! + (Int)(HY.text!)!)"
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -17,4 +23,8 @@ class ViewController: UIViewController {
 
 
 }
+
+
+
+
 
