@@ -45,12 +45,12 @@ class ViewController: UIViewController {
     }
     @IBAction func SUM(_ sender: Any) {
         count = 1
-        temp = Double(HK.text!)! //标记数字
+        temp = Double(HK.text!)!
         HK.text = ""
     }
     @IBAction func reduce(_ sender: Any) {
         count = 2
-        temp = Double(HK.text!)! //标记数字
+        temp = Double(HK.text!)!
         HK.text = ""
     }
     @IBAction func division(_ sender: Any) {
@@ -69,7 +69,7 @@ class ViewController: UIViewController {
             HK.text = "\(temp)"
         }
         if(count == 2){
-            temp = temp + Double(HK.text!)!
+            temp = temp - Double(HK.text!)!
             HK.text = "\(temp)"
         }
         if(count == 3)
@@ -80,12 +80,16 @@ class ViewController: UIViewController {
         if(count == 4)
         {
             temp = temp * Double(HK.text!)!
-            HK.text = "\(temp)"
+            temp = Double(HK.text!)!
         }
+    }
+    @IBAction func Hdot(_ sender: Any) {
+        HK.text = HK.text! + "."
     }
     @IBAction func HAC(_ sender: Any) {
         HK.text = ""
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
