@@ -11,6 +11,7 @@ import UIKit
 class ViewController: UIViewController {
 
     var temp:Double = 0
+    var remember: Bool = true
     var count = 0
     @IBOutlet weak var HK: UITextField!
     @IBAction func H1(_ sender: Any) {
@@ -84,10 +85,14 @@ class ViewController: UIViewController {
         }
     }
     @IBAction func Hdot(_ sender: Any) {
-        HK.text = HK.text! + "."
+        if(remember){
+         HK.text = HK.text! + "."
+            remember = false
+        }
     }
     @IBAction func HAC(_ sender: Any) {
         HK.text = ""
+        remember = true
     }
     
     override func viewDidLoad() {
