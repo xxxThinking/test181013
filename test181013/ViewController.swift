@@ -169,6 +169,7 @@ class ViewController: UIViewController {
     }
     @IBAction func HAC(_ sender: Any) {
         HK.text = ""
+        remember = true
     }
     
     override func viewDidLoad() {
