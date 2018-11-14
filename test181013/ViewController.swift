@@ -8,14 +8,12 @@
 
 import UIKit
 
-
-
-
 class ViewController: UIViewController {
 
     var temp:Double = 0
     var remember: Bool = true
     var count = 0
+    var temp1: Int = 1
     @IBOutlet weak var HK: UITextField!
     @IBAction func H1(_ sender: Any) {
         if(HK.text == "0")
@@ -91,6 +89,7 @@ class ViewController: UIViewController {
         {
         count = 1
         temp = Double(HK.text!)!
+        temp1 = Int(HK.text!)!
         remember = true
         HK.text = ""
     }
@@ -103,6 +102,7 @@ class ViewController: UIViewController {
         {
         count = 2
         temp = Double(HK.text!)!
+              temp1 = Int(HK.text!)!
          remember = true
         HK.text = ""
         }
@@ -115,6 +115,8 @@ class ViewController: UIViewController {
         {
         count = 3
         temp = Double(HK.text!)!
+               temp1 = Int(HK.text!)!
+            
         remember = true
         HK.text = ""
         }
@@ -127,7 +129,8 @@ class ViewController: UIViewController {
         {
         count = 4
         temp = Double(HK.text!)!
-         remember = true
+        temp1 = Int(HK.text!)!
+        remember = true
         HK.text = ""
         }
     }
@@ -139,26 +142,53 @@ class ViewController: UIViewController {
         {
         if(count == 1){
         temp = temp + Double(HK.text!)!
+            temp1 = temp1 + Int(HK.text!)!
             HK.text = "\(temp)"
             count = 0
         }
         if(count == 2){
             temp = temp - Double(HK.text!)!
+             temp1 = temp1 - Int(HK.text!)!
             HK.text = "\(temp)"
             count = 0
         }
         if(count == 3)
         {
             temp = temp / Double(HK.text!)!
+            temp1 = temp1 / Int(HK.text!)!
             HK.text = "\(temp)"
             count = 0
         }
         if(count == 4)
         {
             temp = temp * Double(HK.text!)!
+            temp1 = temp1 * Int(HK.text!)!
             HK.text = "\(temp)"
             count = 0
         }
+        }
+    }
+    @IBAction func negative(_ sender: Any) {
+        if(HK.text == "0" || HK.text == "")
+        {
+            HK.text = "-"
+        } else
+        {
+            if(HK.text == "-")
+            {
+                HK.text = ""
+               return
+            }
+            if(remember){
+            temp1 = Int(HK.text!)! * -1
+            HK.text = "\(temp1)"
+            }
+            else
+            {
+            temp = Double(HK.text!)! * -1
+            HK.text = "\(temp)"
+            }
+        
         }
     }
     @IBAction func Hdot(_ sender: Any) {
@@ -172,6 +202,9 @@ class ViewController: UIViewController {
         remember = true
     }
     
+    @IBAction func delete1(_ sender: Any) {
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
