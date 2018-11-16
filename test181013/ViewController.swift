@@ -88,8 +88,16 @@ class ViewController: UIViewController {
         } else
         {
         count = 1
-        temp = Double(HK.text!)!
-        temp1 = Int(HK.text!)!
+            if(remember)
+            {
+                temp1 =  Int(HK.text!)!
+         
+            }
+            else
+            {
+                temp = Double(HK.text!)!
+           
+            }
         remember = true
         HK.text = ""
     }
@@ -101,8 +109,16 @@ class ViewController: UIViewController {
         } else
         {
         count = 2
-        temp = Double(HK.text!)!
-              temp1 = Int(HK.text!)!
+            if(remember)
+            {
+                temp1 =  Int(HK.text!)!
+      
+            }
+            else
+            {
+                temp = Double(HK.text!)!
+   
+            }
          remember = true
         HK.text = ""
         }
@@ -114,9 +130,14 @@ class ViewController: UIViewController {
         } else
         {
         count = 3
-        temp = Double(HK.text!)!
-               temp1 = Int(HK.text!)!
-            
+            if(remember)
+            {
+                temp1 =  Int(HK.text!)!
+            }
+            else
+            {
+                temp = Double(HK.text!)!
+            }
         remember = true
         HK.text = ""
         }
@@ -128,8 +149,14 @@ class ViewController: UIViewController {
         } else
         {
         count = 4
-        temp = Double(HK.text!)!
-        temp1 = Int(HK.text!)!
+            if(remember)
+            {
+                temp1 =  Int(HK.text!)!
+            }
+            else
+            {
+                temp = Double(HK.text!)!
+            }
         remember = true
         HK.text = ""
         }
@@ -141,33 +168,62 @@ class ViewController: UIViewController {
         } else
         {
         if(count == 1){
-        temp = temp + Double(HK.text!)!
-            temp1 = temp1 + Int(HK.text!)!
-            HK.text = "\(temp)"
-            count = 0
+            if(remember)
+            {
+                temp1 = temp1 + Int(HK.text!)!
+                HK.text = "\(temp1)"
+            }
+            else
+            {
+                temp = temp + Double(HK.text!)!
+                HK.text = "\(temp)"
+            }
+        count = 0
         }
         if(count == 2){
-            temp = temp - Double(HK.text!)!
-             temp1 = temp1 - Int(HK.text!)!
-            HK.text = "\(temp)"
+            if(remember)
+            {
+                temp1 = temp1 - Int(HK.text!)!
+                HK.text = "\(temp1)"
+            }
+            else
+            {
+                temp = temp - Double(HK.text!)!
+                HK.text = "\(temp)"
+            }
             count = 0
         }
         if(count == 3)
         {
-            temp = temp / Double(HK.text!)!
-            temp1 = temp1 / Int(HK.text!)!
-            HK.text = "\(temp)"
+            if(remember)
+            {
+                temp1 = temp1 / Int(HK.text!)!
+                HK.text = "\(temp1)"
+            }
+            else
+            {
+                temp = temp / Double(HK.text!)!
+                HK.text = "\(temp)"
+            }
             count = 0
+   
         }
         if(count == 4)
         {
-            temp = temp * Double(HK.text!)!
-            temp1 = temp1 * Int(HK.text!)!
-            HK.text = "\(temp)"
+            if(remember)
+            {
+                temp1 = temp1 * Int(HK.text!)!
+                HK.text = "\(temp1)"
+            }
+            else
+            {
+                temp = temp * Double(HK.text!)!
+                HK.text = "\(temp)"
+            }
             count = 0
         }
         }
-    }
+}
     @IBAction func negative(_ sender: Any) {
         if(HK.text == "0" || HK.text == "")
         {
@@ -179,16 +235,16 @@ class ViewController: UIViewController {
                 HK.text = ""
                return
             }
-            if(remember){
-            temp1 = Int(HK.text!)! * -1
+            if(remember)
+            {
+                temp1 = Int(HK.text!)! * -1
             HK.text = "\(temp1)"
             }
             else
             {
-            temp = Double(HK.text!)! * -1
-            HK.text = "\(temp)"
+                temp = Double(HK.text!)! * -1
+                HK.text = "\(temp)"
             }
-        
         }
     }
     @IBAction func Hdot(_ sender: Any) {
@@ -203,7 +259,6 @@ class ViewController: UIViewController {
     }
     
     @IBAction func delete1(_ sender: Any) {
-        
     }
     override func viewDidLoad() {
         super.viewDidLoad()
