@@ -12,8 +12,10 @@ class ViewController: UIViewController {
 
     var temp:Double = 0
     var remember: Bool = true
+    var isNotLow: Bool = true
     var count = 0
-    var temp1: Int = 1
+    var temp1: Int = 0
+    var temp3:Int = 0
     @IBOutlet weak var HK: UITextField!
     @IBAction func H1(_ sender: Any) {
         if(HK.text == "0")
@@ -90,13 +92,12 @@ class ViewController: UIViewController {
         count = 1
             if(remember)
             {
-                temp1 =  Int(HK.text!)!
-         
+                temp1 = Int(HK.text!)!
+                temp3 +=  temp1
             }
             else
             {
                 temp = Double(HK.text!)!
-           
             }
         remember = true
         HK.text = ""
@@ -111,13 +112,17 @@ class ViewController: UIViewController {
         count = 2
             if(remember)
             {
-                temp1 =  Int(HK.text!)!
-      
+                if(temp3 == 0){
+                temp3 = Int(HK.text!)!
+                }
+                else{
+                temp1 = Int(HK.text!)!
+                }
+                temp3 -=  temp1
             }
             else
             {
                 temp = Double(HK.text!)!
-   
             }
          remember = true
         HK.text = ""
@@ -126,13 +131,19 @@ class ViewController: UIViewController {
     @IBAction func division(_ sender: Any) {
         if(HK.text == "0" || HK.text == "")
         {
-            
+    
         } else
         {
         count = 3
             if(remember)
             {
-                temp1 =  Int(HK.text!)!
+                if(temp3 == 0){
+                    temp3 = Int(HK.text!)!
+                }
+                else{
+                temp1 = Int(HK.text!)!
+                }
+                temp3 /=  temp1
             }
             else
             {
@@ -151,7 +162,13 @@ class ViewController: UIViewController {
         count = 4
             if(remember)
             {
-                temp1 =  Int(HK.text!)!
+                if(temp3 == 0){
+                    temp3 = Int(HK.text!)!
+                }
+                else{
+                temp1 = Int(HK.text!)!
+                temp3 *=  temp1
+                }
             }
             else
             {
@@ -170,8 +187,8 @@ class ViewController: UIViewController {
         if(count == 1){
             if(remember)
             {
-                temp1 = temp1 + Int(HK.text!)!
-                HK.text = "\(temp1)"
+                temp3 += Int(HK.text!)!
+                HK.text = "\(temp3)"
             }
             else
             {
@@ -183,8 +200,8 @@ class ViewController: UIViewController {
         if(count == 2){
             if(remember)
             {
-                temp1 = temp1 - Int(HK.text!)!
-                HK.text = "\(temp1)"
+                
+                HK.text = "\(temp3)"
             }
             else
             {
@@ -197,8 +214,8 @@ class ViewController: UIViewController {
         {
             if(remember)
             {
-                temp1 = temp1 / Int(HK.text!)!
-                HK.text = "\(temp1)"
+                temp3 /= Int(HK.text!)!
+                HK.text = "\(temp3)"
             }
             else
             {
@@ -212,8 +229,8 @@ class ViewController: UIViewController {
         {
             if(remember)
             {
-                temp1 = temp1 * Int(HK.text!)!
-                HK.text = "\(temp1)"
+                temp3 *= Int(HK.text!)!
+                HK.text = "\(temp3)"
             }
             else
             {
@@ -238,7 +255,7 @@ class ViewController: UIViewController {
             if(remember)
             {
                 temp1 = Int(HK.text!)! * -1
-            HK.text = "\(temp1)"
+                HK.text = "\(temp1)"
             }
             else
             {
@@ -248,17 +265,20 @@ class ViewController: UIViewController {
         }
     }
     @IBAction func Hdot(_ sender: Any) {
-        if(remember){
-         HK.text = HK.text! + "."
+        if(HK.text == "")
+        {
+            remember = false
+        }else
+        {
+            if(remember){
+                HK.text = HK.text! + "."
+            }
+            remember = false
         }
-        remember = false
     }
     @IBAction func HAC(_ sender: Any) {
         HK.text = ""
         remember = true
-    }
-    
-    @IBAction func delete1(_ sender: Any) {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
