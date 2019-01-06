@@ -11,12 +11,17 @@ import UIKit
 class ViewController: UIViewController {
 
     var temp:Double = 0
-    var remember: Bool = true
-    var isNotLow: Bool = true
+    var remember: Bool = false
+    var newInput = true
+    var cacheNumber = ""
+    var op = ""
     var count = 0
-    var temp1: Int = 0
-    var temp3:Int = 0
+    var add = 0
+    var temp1: Double = 0
+    var temp2: Double = 0
+    var temp3:Double = 0
     @IBOutlet weak var HK: UITextField!
+    var isStart:Bool = false
     @IBAction func H1(_ sender: Any) {
         if(HK.text == "0")
         {
@@ -90,16 +95,8 @@ class ViewController: UIViewController {
         } else
         {
         count = 1
-            if(remember)
-            {
-                temp1 = Int(HK.text!)!
-                temp3 +=  temp1
-            }
-            else
-            {
-                temp = Double(HK.text!)!
-            }
-        remember = true
+        temp1 = Double(HK.text!)!
+        temp3 +=  temp1
         HK.text = ""
     }
     }
@@ -109,22 +106,20 @@ class ViewController: UIViewController {
             
         } else
         {
+            if(count == 1){
+                temp1 = Double(HK.text!)!
+                temp3 += temp1
+                count = 0
+            }
         count = 2
-            if(remember)
-            {
-                if(temp3 == 0){
-                temp3 = Int(HK.text!)!
+        if(temp3 == 0)
+                {
+                    temp3 = Double(HK.text!)!
+                }else
+                {
+                    temp1 = Double(HK.text!)!
                 }
-                else{
-                temp1 = Int(HK.text!)!
-                }
-                temp3 -=  temp1
-            }
-            else
-            {
-                temp = Double(HK.text!)!
-            }
-         remember = true
+                temp3 -= temp1
         HK.text = ""
         }
     }
@@ -134,22 +129,18 @@ class ViewController: UIViewController {
     
         } else
         {
+            if(count == 1){
+                temp1 = Double(HK.text!)!
+                temp3 +=  temp1
+            }
         count = 3
-            if(remember)
-            {
-                if(temp3 == 0){
-                    temp3 = Int(HK.text!)!
-                }
-                else{
-                temp1 = Int(HK.text!)!
-                }
-                temp3 /=  temp1
-            }
-            else
-            {
-                temp = Double(HK.text!)!
-            }
-        remember = true
+    if(temp3 == 0){
+        temp3  = Double(HK.text!)!
+        } else
+        {
+            temp1 = Double(HK.text!)!
+        }
+            temp3 /=  temp1
         HK.text = ""
         }
     }
@@ -159,22 +150,18 @@ class ViewController: UIViewController {
             
         } else
         {
+            if(count == 1){
+                temp1 = Double(HK.text!)!
+                temp3 +=  temp1
+            }
         count = 4
-            if(remember)
-            {
-                if(temp3 == 0){
-                    temp3 = Int(HK.text!)!
-                }
-                else{
-                temp1 = Int(HK.text!)!
-                temp3 *=  temp1
-                }
-            }
-            else
-            {
-                temp = Double(HK.text!)!
-            }
-        remember = true
+        if(temp3 == 0){
+            temp3 = Double(HK.text!)!
+        } else
+        {
+            temp1 = Double(HK.text!)!
+            temp3 *=  temp1
+        }
         HK.text = ""
         }
     }
@@ -185,59 +172,29 @@ class ViewController: UIViewController {
         } else
         {
         if(count == 1){
-            if(remember)
-            {
-                temp3 += Int(HK.text!)!
-                HK.text = "\(temp3)"
-            }
-            else
-            {
-                temp = temp + Double(HK.text!)!
-                HK.text = "\(temp)"
-            }
-        count = 0
+            temp1 = Double(HK.text!)!
+            temp3 +=  temp1
+            HK.text = "\(temp3)"
+            count = 0
         }
         if(count == 2){
-            if(remember)
-            {
-                
-                HK.text = "\(temp3)"
-            }
-            else
-            {
-                temp = temp - Double(HK.text!)!
-                HK.text = "\(temp)"
-            }
+            temp1 = Double(HK.text!)!
+            temp3 -=  temp1
+            HK.text = "\(temp3)"
             count = 0
         }
         if(count == 3)
         {
-            if(remember)
-            {
-                temp3 /= Int(HK.text!)!
-                HK.text = "\(temp3)"
-            }
-            else
-            {
-                temp = temp / Double(HK.text!)!
-                HK.text = "\(temp)"
-            }
+            temp3 /= Double(HK.text!)!
+            HK.text = "\(temp3)"
             count = 0
    
         }
         if(count == 4)
         {
-            if(remember)
-            {
-                temp3 *= Int(HK.text!)!
+                temp3 *= Double(HK.text!)!
                 HK.text = "\(temp3)"
-            }
-            else
-            {
-                temp = temp * Double(HK.text!)!
-                HK.text = "\(temp)"
-            }
-            count = 0
+                count = 0
         }
         }
 }
@@ -252,36 +209,72 @@ class ViewController: UIViewController {
                 HK.text = ""
                return
             }
-            if(remember)
-            {
-                temp1 = Int(HK.text!)! * -1
+                temp1 = Double(HK.text!)! * -1
                 HK.text = "\(temp1)"
-            }
-            else
-            {
-                temp = Double(HK.text!)! * -1
-                HK.text = "\(temp)"
-            }
         }
     }
     @IBAction func Hdot(_ sender: Any) {
-        if(HK.text == "")
-        {
-            remember = false
-        }else
-        {
-            if(remember){
-                HK.text = HK.text! + "."
-            }
-            remember = false
+        if !remember{
+            HK.text! += "."
+            remember = true
         }
+
+    }
+    @IBAction func operratorClick(_ sender: UIButton) {
+        cacheNumber = HK.text!
+        op = sender.titleLabel!.text!
+        HK.text = "0"
+        remember = false
+        newInput = true
+        add += 1
     }
     @IBAction func HAC(_ sender: Any) {
         HK.text = ""
         remember = true
+    }
+    
+    func calculate(){
+        let num1 = Double(cacheNumber)!
+        let num2 = Double(HK.text!)!
+        let result:Double
+        if "+" == op {
+            result = num1 + num2
+        }
+        else if "-" == op {
+            result = num1 - num2
+        }
+        else if "*" == op {
+            result = num1 * num2
+        }
+        else if "/" == op {
+            result = num1 / num2
+        }
+        else {
+            result = 0
+        }
+        temp3 += Double(HK.text!)!
+        HK.text = "\(result)"
+        remember = false
+        newInput = true
+    }
+    @IBAction func clear(_ sender: UIButton) {
+        remember = false
+        newInput = true
+        cacheNumber = "0"
+        op = ""
+        add = 0
+        HK.text = "0"
+    }
+    @IBAction func equalClick(_ sender: UIButton) {
+        if(add > 1){
+        calculate()
+        }
+        
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
 }
+
+
